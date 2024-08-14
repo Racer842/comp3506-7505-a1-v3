@@ -35,6 +35,8 @@ def test_missing_odds():
     # missing_odds([1, 4]) 
     # missing_odds([4, 1])
     test = missing_odds([4, 1, 8, 5])
+    print(test)
+    test = missing_odds([4, 1, 8, 5, 13, 14, 22, 23, 3, 7])
     print(test) 
 
 def test_k_cool():
@@ -53,9 +55,12 @@ def test_k_cool():
     test = k_cool(128, 5000)
     print(test)
     test = k_cool(7, 8)
+    test = k_cool(10**16, 10**100)
     print(test)
     test = k_cool(10**42, 10**100000)
-    print("heelp")
+     #2 <= k <= 10^16
+    #1 <= n <= 10^100
+    #print("heelp")
     print(test)
 
 
@@ -64,12 +69,26 @@ def test_number_game():
     A simple set of tests for the number game problem.
     This is not marked and is just here for you to test your code.
     """
+    print(number_game([5, 2, 7, 3])) ##== ("Bob", 5)
+    print(number_game([3, 2, 1, 0])) ##== ("Tie", 0)
+    print(number_game([2, 2, 2, 2])) ##== ("Alice", 4)
 
 def test_road_illumination():
     """
     A simple set of tests for the road illumination problem.
     This is not marked and is just here for you to test your code.
     """
+    test_list = [random.randint(0, 10**16) for i in range(300000)]
+
+    test = road_illumination(10**16, test_list)
+    print(test)
+
+    test = road_illumination(15, [15, 5, 3, 7, 9, 14, 0])
+    print(test)
+    test = road_illumination(15, [11, 5, 3, 7, 9, 11])
+    print(test)
+    test = road_illumination(5, [2, 5])
+    print(test)
 
 # The actual program we're running here
 if __name__ == "__main__":

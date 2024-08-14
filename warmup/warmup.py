@@ -28,6 +28,7 @@ There will be hidden tests in each category that will be published only after th
 You may wish to import your data structures to help you with some of the
 problems. Or maybe not. We did it for you just in case.
 """
+import math
 from structures.bit_vector import BitVector
 from structures.dynamic_array import DynamicArray
 from structures.linked_list import DoublyLinkedList, Node
@@ -126,11 +127,11 @@ def missing_odds(inputs: list[int]) -> int:
     else:
         upper_odd = upper_bound
     
-    total_sum = ((upper_odd - lower_odd + 2)*(lower_odd + upper_odd)) / 4
+    total_sum = ((upper_odd - lower_odd + 2)*(lower_odd + upper_odd)) // 4
 
     total_sum = total_sum - odd_present_sum
 
-    return int(total_sum)
+    return total_sum
 
 def k_cool(k: int, n: int) -> int:
     """
@@ -164,10 +165,10 @@ def k_cool(k: int, n: int) -> int:
     power = 1
 
     while n > 0:
-        if n % 2 == 1:
-            answer = (answer + power) % MODULUS
-        power = (power * k) % MODULUS
-        n = n // 2
+        if n & 1:
+            answer = (answer + power ) % MODULUS
+        power = (power * k ) % MODULUS
+        n >>= 1
 
     # YOUR CODE GOES HERE
     #answer = 0  # please update with the real answer... :-)
@@ -209,35 +210,42 @@ def number_game(numbers: list[int]) -> tuple[str, int]:
     """
 
     # YOUR CODE GOES HERE
-    # Alice_score = 0
-    # Bob_score = 0
-    # turn_tracker = 0
-    # game_array = DynamicArray()
+    Alice_score = 0
+    Bob_score = 0
+    turn_tracker = 0
+    size = 0
+    game_array = DynamicArray()
     
-    # for elem in list:
-    #   game_array.append(elem)
+    for elem in numbers:
+      size += 1
     
-    # game_array.sort()
-    # size = game_array.get_size()
+    game_array.store_existing_array(numbers, size)
+
+    game_array.sort()
+    size = game_array.get_size()
     
-    # for i in range(0, size):
-    #   value = game_array.get_at(size - i)
-    #   if turn_tracker == 0:
-    #       if value % 2 == 0:
-    #           Alice_score += value
-    #       turn_tracker = 1
-    #   else:
-    #      if value % 2 == 1:
-    #          Bob_score += value
-    #       turn_tracker = 1
+    for i in range(0, size):
+        value = game_array[size - i - 1]
+        if turn_tracker == 0:
+            if value & 1 == 0:
+                Alice_score += value
+            turn_tracker = 1
+        else:
+            if value & 1 == 1:
+                Bob_score += value
+            turn_tracker = 0
     
-    # if Bob_score > Alice_score:
-    #   winner = "Bob"
-    # elif Alice_score > Bob_score:
-    #   winner = "Alice"
-    # else:
-    #   winner = "Tie"
-    pass
+    if Bob_score > Alice_score:
+      winner = "Bob"
+      winning_score = Bob_score
+    elif Alice_score > Bob_score:
+      winner = "Alice"
+      winning_score = Alice_score
+    else:
+      winner = "Tie"
+      winning_score = Bob_score
+    
+    return winner, winning_score
 
 
 def road_illumination(road_length: int, poles: list[int]) -> float:
@@ -269,25 +277,29 @@ def road_illumination(road_length: int, poles: list[int]) -> float:
     """
 
     # YOUR CODE GOES HERE
-    # road_array = DynamicArray()
-    # difference = 0
+    road_array = DynamicArray()
+    difference = 0
+    size = 0
     
-    # for elem in poles:
-    #   road_array.append(elem)
+    for elem in poles:
+      size += 1
     
-    # road_array.sort()
-    # size = road_array.get_size()
+    road_array.store_existing_array(poles, size)
+
+    road_array.sort()
     
-    # for i in range(0, size - 1):
-    #   temp_diff = road_array[i + 1] - road_array[i]
-    #   if temp_diff > difference:
-    #       difference = temp_diff
+    for i in range(0, size - 1):
+      temp_diff = road_array[i + 1] - road_array[i]
+      if temp_diff > difference:
+          difference = temp_diff
+
+    # for i in range(1, size):
+    #     max_gap = max(max_gap, poles[i] - poles[i - 1])
     
-    # radius = difference / 2
-    # if road_array[0] > radius:
-    #   radius = road_array[0]
-    # if (road_length - road_array[size - 1]) > radius:
-    #   radius = road_length - road_array[size - 1]
+    radius = difference / 2
+    if road_array[0] > radius:
+      radius = road_array[0]
+    if (road_length - road_array[size - 1]) > radius:
+      radius = road_length - road_array[size - 1]
     
-    # return radius
-    pass
+    return radius
