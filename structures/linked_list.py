@@ -90,15 +90,6 @@ class DoublyLinkedList:
         """
         if self._size == 0:
             return None
-
-        # if self._reversed == 1:
-        #     data = self.get_tail()
-        #     return data
-        
-        # if self._head is not None:
-        #     return self._head.get_data()
-        # else:
-        #     return None
         
         if self._reversed == 0  or self._reversed_occuring == 1:
             self._reversed_occuring = 0
@@ -133,15 +124,6 @@ class DoublyLinkedList:
         """
         if self._size == 0:
             return None
-
-        # if self._reversed == 1:
-        #     data = self.get_head()
-        #     return data
-        
-        # if self._tail is not None:
-        #     return self._tail.get_data()
-        # else:
-        #     return None
         
         if self._reversed == 0  or self._reversed_occuring == 1:
             self._reversed_occuring = 0
@@ -183,14 +165,18 @@ class DoublyLinkedList:
         """
 
         if self._reversed == 0 or self._reversed_occuring == 1:
+            
             new_node = Node(data)
-            #If list is empty
+            
+            # If list is empty
             if self._size == 0:
                 self._head = new_node
                 self._tail = new_node
             else:
                 new_node.set_next(self._head)
                 self._head.set_prev(new_node)
+                if self._size == 1:
+                    self._tail.set_prev(new_node)
                 self._head = new_node
             
             self._size += 1
@@ -210,7 +196,7 @@ class DoublyLinkedList:
             
             new_node = Node(data)
             
-        # If list is empty
+            # If list is empty
             if self._size == 0:
                 self._head = new_node
                 self._tail = new_node
@@ -218,6 +204,8 @@ class DoublyLinkedList:
             else:
                 new_node.set_prev(self._tail)
                 self._tail.set_next(new_node)
+                if self._size == 1:
+                    self._head.set_next(new_node)
                 self._tail = new_node
         
             self._size += 1
@@ -235,7 +223,6 @@ class DoublyLinkedList:
         if self._size == 0:
             return None
         
-        #dele_node = self._head
         if self._reversed == 0 or self._reversed_occuring == 1:
             del_data = self.get_head()
             self._reversed_occuring = 0
@@ -281,7 +268,6 @@ class DoublyLinkedList:
             self._reversed_occuring = 1
             self.remove_from_front()
 
-        #return del_node.get_data()
 
     def find_element(self, elem: Any) -> bool:
         """

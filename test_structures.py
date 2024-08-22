@@ -108,25 +108,82 @@ def test_dynamic_array():
     """
     print ("==== Executing Dynamic Array Tests ====")
     my_list = DynamicArray()
-    my_list.append(1)
-    my_list.append(3)
-    my_list.append(4)
-    my_list.append(6)
-    print(str(my_list))
-    my_list.append(8)
-    my_list.append(3)
-    print(str(my_list))
-    my_list.prepend(99)
-    my_list.prepend(76)
-    my_list.append(11)
-    print(str(my_list))
-    print(my_list[0])
-    my_list.sort()
-    print(str(my_list))
-    my_list.append(14)
-    print(str(my_list))
-    my_list.sort()
-    print(str(my_list))
+
+    my_list.prepend(1)
+    print(my_list)
+    my_list.append(2)
+    print(my_list)
+    # x = 100
+
+    # for i in range(27):
+    #     if i % 2:
+    #         my_list.append(i)
+    #     else:
+    #         my_list.append(x)
+    #         x -= 2
+    # my_list.prepend(3)
+    # my_list.prepend(2)
+    # # print(f"SIZE OF {my_list.get_size()}")
+    # # print(f"THIS IS POS:{my_list[30]}")
+    # # my_list.sort()
+    # print(my_list)
+    # for i in range(0, my_list.get_size() + 1):
+    #     print(my_list.remove_at(0))
+
+    # print(my_list.get_size())
+    # print(my_list[0])
+    # print(my_list[0])
+    # # my_list.reverse()
+    # my_list.sort()
+    # print(my_list)
+
+    # for elem in my_list:
+    #     # if elem is not None:
+    #     #     print("heelo")
+    #     if elem is None:
+    #         break
+
+    #     if elem == 1:
+    #         print("thest")
+    
+    # return None
+
+    # for i in range(31):
+    #     if i % 2:
+    #         my_list.append(i)
+    #     else:
+    #         my_list.append(x)
+    #         x -= 2
+    # print(my_list)
+    # my_list.sort()
+    # print(my_list)
+    # my_list.append("B")
+    # my_list.append("D")
+    # my_list.append("A")
+    # my_list.append("C")
+    # my_list.append(1)
+    # print(my_list)
+    # my_list.sort()
+    # print(my_list)
+    # my_list.append(1)
+    # my_list.append(3)
+    # my_list.append(4)
+    # my_list.append(6)
+    # print(str(my_list))
+    # my_list.append(8)
+    # my_list.append(3)
+    # print(str(my_list))
+    # my_list.prepend(99)
+    # my_list.prepend(76)
+    # my_list.append(11)
+    # print(str(my_list))
+    # print(my_list[0])
+    # my_list.sort()
+    # print(str(my_list))
+    # my_list.append(14)
+    # print(str(my_list))
+    # my_list.sort()
+    # print(str(my_list))
     # my_list.append(12)
     # my_list.prepend(59)
     # my_list.prepend(68283)
@@ -201,7 +258,54 @@ def test_bitvector():
     This is not marked and is just here for you to test your code.
     """
     print ("==== Executing Bit Vector Tests ====")
+    my_vec = BitVector()
+    
+    # my_vec.prepend(0)
+    # my_vec.prepend(1)
+    # my_vec.append(1)
+    # my_vec.append(1)
+    # my_vec.append(0)
+    # my_vec.append(1)
 
+    # print(my_vec)
+    # print(my_vec[1])
+    # my_vec.set_at(1)
+    # my_vec.unset_at(2)
+
+    for i in range(0, 75):
+        if i % 3 == 0:
+            print(f"Bit set High at: {i}")
+            my_vec.append(1)
+        else:
+            my_vec.append(0)
+        
+    
+    print(my_vec)
+    print(my_vec[0])
+    my_vec.set_at(1)
+    print(my_vec)
+    print(my_vec.get_size())
+    my_vec.rotate(-76)
+    print(my_vec)
+
+    # print(my_vec[1])
+    # print(my_vec[2])
+    # print(my_vec[3])
+    # print(my_vec[4])
+    # print(my_vec[0])
+    # print(my_vec[0])
+    # print(my_vec[0])
+    # # print(my_vec[87])
+    # my_vec.unset_at(87)
+    # my_vec.unset_at(3)
+    # print(my_vec[87])
+
+    # print(my_vec[1])
+
+    # print(my_vec)
+
+    # my_vec.flip_all_bits()
+    # print(my_vec[6])
 
 
 # The actual program we're running here

@@ -20,7 +20,14 @@ def test_main_character():
     A simple set of tests for the main character problem.
     This is not marked and is just here for you to test your code.
     """
-    assert (main_character([1,2,3,4,5]) == -1)
+    # assert (main_character([1,2,3,4,5]) == -1)
+    print(main_character([1, 2, 3, 4, 5])) #== -1
+    print(main_character([1, 2, 1, 4, 4, 4])) #== 2
+    print(main_character([7, 1, 2, 7])) #== 3
+    print(main_character([60000, 120000, 654321, 999, 1337, 133731337])) #== -1
+
+    test_list = [random.randint(10, 2**31) for i in range(5000000)]
+    print(main_character(test_list))
  
 
 def test_missing_odds():
@@ -72,6 +79,9 @@ def test_number_game():
     print(number_game([5, 2, 7, 3])) ##== ("Bob", 5)
     print(number_game([3, 2, 1, 0])) ##== ("Tie", 0)
     print(number_game([2, 2, 2, 2])) ##== ("Alice", 4)
+
+    test_list = [random.randint(0, 10**16) for i in range(300000)]
+    print(number_game(test_list))
 
 def test_road_illumination():
     """

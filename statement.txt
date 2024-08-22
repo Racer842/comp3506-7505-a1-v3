@@ -1,0 +1,17 @@
+Made use of 2-mergesort.py example code from Week 2. Used in Dynamic Array Sort() and Kmer Batch_insert() and Batch_delte()
+
+Dynamic Array Read about Circular Array from:
+https://cs.stackexchange.com/questions/97451/what-is-actually-a-circular-array-and-representation
+https://www.youtube.com/watch?v=hOPYEI_d50s
+
+Kmers used a Binary Search method learnt from:
+https://prepfortech.io/leetcode-solutions/find-first-and-last-position-of-element-in-sorted-array
+https://www.enjoyalgorithms.com/blog/first-and-last-positions-of-element-in-sorted-array
+
+K Cool understanding of decimal to binary calculations:
+https://prepfortech.io/leetcode-solutions/find-first-and-last-position-of-element-in-sorted-array
+
+
+
+
+

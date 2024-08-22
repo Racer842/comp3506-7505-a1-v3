@@ -29,6 +29,7 @@ You may wish to import your data structures to help you with some of the
 problems. Or maybe not. We did it for you just in case.
 """
 import math
+import time
 from structures.bit_vector import BitVector
 from structures.dynamic_array import DynamicArray
 from structures.linked_list import DoublyLinkedList, Node
@@ -58,15 +59,16 @@ def main_character(instring: list[int]) -> int:
     """
     #Create Bit Vector
     # set it to the size using custom function
-    # storage_vectore
+    storage_vector = BitVector()
+    storage_vector.main_character_bit_vector()
 
-    #index = 0
-    #for elem in instring:
-        # if storage_vector.get_bit(elem) == 0:
-        #   storage_vectore.set_bit(elem, 1)
-        # else:
-            #return index
-        #index += 1
+    index = 0
+    for elem in instring:
+        if storage_vector.get_at(elem) == 0:
+            storage_vector.set_at(elem)
+        else:
+            return index
+        index += 1
 
     return -1
 
@@ -105,6 +107,7 @@ def missing_odds(inputs: list[int]) -> int:
     odd_present_sum = 0
     first_element_flag = 0
 
+    # Find upper and lower bound
     for elem in inputs:
         if first_element_flag == 0:
             lower_bound = elem
@@ -117,6 +120,7 @@ def missing_odds(inputs: list[int]) -> int:
         if elem % 2 == 1:
             odd_present_sum += elem
     
+    # Find the lower and upper bound odd number
     if lower_bound % 2 == 0:
         lower_odd = lower_bound + 1
     else:
@@ -162,16 +166,16 @@ def k_cool(k: int, n: int) -> int:
     MODULUS = 10**16 + 61
 
     answer = 0
-    power = 1
+
+    # This starts it at k^0
+    k_to_the_power = 0
 
     while n > 0:
         if n & 1:
-            answer = (answer + power ) % MODULUS
-        power = (power * k ) % MODULUS
+            answer = (answer + pow(k, k_to_the_power, MODULUS)) % MODULUS
+        k_to_the_power = (k_to_the_power + 1) % MODULUS
         n >>= 1
 
-    # YOUR CODE GOES HERE
-    #answer = 0  # please update with the real answer... :-)
     return answer 
 
 
@@ -208,33 +212,37 @@ def number_game(numbers: list[int]) -> tuple[str, int]:
     The same happens on the next move.
     So, nobody picks any numbers to increase their score, which results in a Tie with both players having scores of 0.
     """
-
     # YOUR CODE GOES HERE
     Alice_score = 0
     Bob_score = 0
     turn_tracker = 0
     size = 0
+
     game_array = DynamicArray()
-    
-    for elem in numbers:
-      size += 1
-    
+
+    size = len(numbers)
+
+    # start_time_1 = time.time()
     game_array.store_existing_array(numbers, size)
 
     game_array.sort()
-    size = game_array.get_size()
-    
-    for i in range(0, size):
-        value = game_array[size - i - 1]
+
+    game_array.reverse()
+
+    for elem in game_array:
+        
+        if elem is None:
+            break
+        
         if turn_tracker == 0:
-            if value & 1 == 0:
-                Alice_score += value
+            if elem & 1 == 0:
+                Alice_score += elem
             turn_tracker = 1
         else:
-            if value & 1 == 1:
-                Bob_score += value
+            if elem & 1 == 1:
+                Bob_score += elem
             turn_tracker = 0
-    
+
     if Bob_score > Alice_score:
       winner = "Bob"
       winning_score = Bob_score
@@ -281,8 +289,10 @@ def road_illumination(road_length: int, poles: list[int]) -> float:
     difference = 0
     size = 0
     
-    for elem in poles:
-      size += 1
+    # for elem in poles:
+    #   size += 1
+
+    size = len(poles)
     
     road_array.store_existing_array(poles, size)
 

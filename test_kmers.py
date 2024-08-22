@@ -21,14 +21,29 @@ def test_kmer_store_build(filepath : str):
     A set of tests for building a kmer store
     This is not marked and is just here for you to test your code.
     """
-    ks = KmerStore(31) # test using 31-mers
+    ks = KmerStore(4) # test using 31-mers
     ks.read(filepath)
-    
+
+
+def test_kmer():
+    ks = KmerStore(4)
+
+    test = ["AACT", "GCAT", "ATCG", "TCAG", "AAAA"]
+    ks.batch_insert(test)
+    test = ["AACT", "GCAT", "ATCG", "TCAG", "CGAA", "GCGG", "AAAA", "AATA", "ATCG"]
+    ks.batch_insert(test)
+    print(ks.compatible("GTAT"))
+    # print(ks.freq_geq(2))
+    # print(ks.count("TCAG"))
+    test = ["AAAA", "ATCG", "TCAG"]
+    ks.batch_delete(test)
+    print(ks.compatible("GTAT"))
 
 # The actual program we're running here
 if __name__ == "__main__":
     # Get and parse the command line arguments
     parser = argparse.ArgumentParser(description="COMP3506/7505 Assignment One: Testing K-mer structure")
+    parser.add_argument("--kmer", action="store_true", help="Test your kmer")
     parser.add_argument("--build", type=str, help="Path to a file containing DNA sequences.")
     parser.add_argument("--seed", type=int, default='42', help="Seed the PRNG.")
     args = parser.parse_args()
@@ -40,6 +55,9 @@ if __name__ == "__main__":
 
     # Seed the PRNG in case you are using randomness
     random.seed(args.seed)
+
+    if args.kmer:
+        test_kmer()
 
     # Now check/run the selected algorithm
     if args.build:
